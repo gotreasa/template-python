@@ -42,6 +42,7 @@
 		"ms-python.python",
 		"ms-python.vscode-pylance",
         "alexkrechik.cucumberautocomplete",
+        "davidanson.vscode-markdownlint",
         "frhtylcn.pythonsnippets",
         "jairhenrique.pytest-snippets",
         "mermade.openapi-lint",
