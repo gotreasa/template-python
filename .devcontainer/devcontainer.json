@@ -47,8 +47,7 @@
         "jairhenrique.pytest-snippets",
         "mermade.openapi-lint",
         "ms-vsliveshare.vsliveshare",
-        "redhat.vscode-yaml",
-        "sonarsource.sonarlint-vscode"
+        "redhat.vscode-yaml"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
