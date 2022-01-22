@@ -37,6 +37,7 @@ repos:
         language: system
         entry: pipfile-sort
         pass_filenames: False
+        file: Pipfile
 
       - id: pytest-cov
         name: pytest
