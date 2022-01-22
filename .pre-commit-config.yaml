@@ -1,13 +1,6 @@
 repos:
   - repo: local
     hooks:
-      - id: isort
-        name: isort
-        stages: [commit]
-        language: system
-        entry: pipenv run isort
-        types: [python]
-
       - id: black
         name: black
         stages: [commit]
@@ -23,6 +16,13 @@ repos:
         types: [python]
         exclude: setup.py
 
+      - id: isort
+        name: isort
+        stages: [commit]
+        language: system
+        entry: pipenv run isort
+        types: [python]
+
       - id: mypy
         name: mypy
         stages: [commit]
@@ -30,6 +30,13 @@ repos:
         entry: pipenv run mypy
         types: [python]
         pass_filenames: false
+
+      - id: pipfile-sort
+        name: pipfile-sort
+        stages: [commit]
+        language: system
+        entry: pipfile-sort
+        types: [python]
 
       - id: pytest-cov
         name: pytest
@@ -39,11 +46,10 @@ repos:
         types: [python]
         pass_filenames: false
 
-  - repo: https://github.com/jorisroovers/gitlint
-    rev: v0.17.0
-    hooks:
       - id: gitlint
+        name: gitlint
         stages: [commit-msg]
+        language: system
         entry: gitlint
         types: [python]
         args:
