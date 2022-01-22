@@ -36,7 +36,7 @@ repos:
         stages: [commit]
         language: system
         entry: pipfile-sort
-        types: [python]
+        pass_filenames: False
 
       - id: pytest-cov
         name: pytest

@@ -4,21 +4,21 @@ verify_ssl = true
 name = "pypi"
 
 [dev-packages]
+black = "*"
+flake8 = "*"
+gitlint = "*"
+isort = "*"
+mypy = "*"
+pipfile-sort = "*"
+pre-commit = "*"
 pytest = "*"
 pytest-bdd = "*"
-pytest-describe-it = "*"
 pytest-cov = "*"
+pytest-describe-it = "*"
 pytest-html = "*"
-pytest-pspec = "*"
 pytest-mock = "*"
-isort = "*"
-gitlint = "*"
+pytest-pspec = "*"
 pytest-watch = "*"
-flake8 = "*"
-mypy = "*"
-black = "*"
-pre-commit = "*"
-pipfile-sort = "*"
 
 [packages]
 
@@ -27,4 +27,6 @@ python_version = "3.9"
 
 [scripts]
 test = "pytest"
-watch = "ptw"
+coverage = "pytest --cov-report term --cov='modules' --verbose --verbosity=9 --cache-clear --rootdir='.'"
+coverageHtml = "pytest --cov-report html --cov='modules'"
+watch = "ptw test/ -- --cov-report term --cov='modules'"
