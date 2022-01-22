@@ -27,7 +27,9 @@ pytest-watch = "*"
 python_version = "3.9"
 
 [scripts]
-test = "pytest"
 coverage = "pytest --cov-report term --cov='modules' --verbose --verbosity=9 --cache-clear --rootdir='.'"
 coverageHtml = "pytest --cov-report html --cov='modules'"
+detect-secrets-update = "detect-secrets scan --baseline .secrets.baseline"
+detect-secrets-audit = "detect-secrets audit .secrets.baseline"
+test = "pytest"
 watch = "ptw test/ -- --cov-report term --cov='modules'"

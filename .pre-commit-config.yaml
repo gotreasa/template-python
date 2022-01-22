@@ -8,6 +8,13 @@ repos:
         entry: pipenv run black
         types: [python]
 
+      - id: detect-secrets
+        name: Detect secrets
+        description: Detects high entropy strings that are likely to be passwords.
+        entry: detect-secrets-hook
+        language: python
+        rgs: ['--baseline', '.secrets.baseline']
+
       - id: flake8
         name: flake8
         stages: [commit]
