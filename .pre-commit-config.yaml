@@ -1,4 +1,25 @@
 repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+    - id: check-builtin-literals
+      args: ['--no-allow-dict-kwargs']
+    - id: debug-statements
+    - id: double-quote-string-fixer
+    - id: end-of-file-fixer
+    - id: name-tests-test
+    - id: sort-simple-yaml
+    - id: trailing-whitespace
+  - repo: https://github.com/asottile/reorder_python_imports
+    rev: v1.6.1
+    hooks:
+    - id: reorder-python-imports
+      language_version: python3
+      exclude: bumpity.py$
+  - repo: https://github.com/asottile/add-trailing-comma
+    rev: v1.4.1
+    hooks:
+    - id: add-trailing-comma
   - repo: local
     hooks:
       - id: black
@@ -13,7 +34,7 @@ repos:
         description: Detects high entropy strings that are likely to be passwords.
         entry: detect-secrets-hook
         language: python
-        rgs: ['--baseline', '.secrets.baseline']
+        args: ['--baseline', '.secrets.baseline']
 
       - id: flake8
         name: flake8
@@ -44,7 +65,7 @@ repos:
         language: system
         entry: pipfile-sort
         pass_filenames: False
-        file: Pipfile
+        files: Pipfile
 
       - id: pytest-cov
         name: pytest
