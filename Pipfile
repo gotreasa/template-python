@@ -31,5 +31,6 @@ coverage = "pytest --cov-report term --cov='modules' --verbose --verbosity=9 --c
 coverageHtml = "pytest --cov-report html --cov='modules'"
 detect-secrets-update = "detect-secrets scan --baseline .secrets.baseline"
 detect-secrets-audit = "detect-secrets audit .secrets.baseline"
+init = "pre-commit install --install-hooks -t commit-msg -t pre-push -t pre-commit"
 test = "pytest"
 watch = "ptw test/ -- --cov-report term --cov='modules'"

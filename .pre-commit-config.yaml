@@ -32,8 +32,8 @@ repos:
       - id: detect-secrets
         name: Detect secrets
         description: Detects high entropy strings that are likely to be passwords.
-        entry: detect-secrets-hook
-        language: python
+        language: system
+        entry: pipenv run detect-secrets-hook
         args: ['--baseline', '.secrets.baseline']
 
       - id: flake8
@@ -63,7 +63,7 @@ repos:
         name: pipfile-sort
         stages: [commit]
         language: system
-        entry: pipfile-sort
+        entry: pipenv run pipfile-sort
         pass_filenames: False
         files: Pipfile
 
@@ -79,9 +79,7 @@ repos:
         name: gitlint
         stages: [commit-msg]
         language: system
-        entry: gitlint
-        types: [python]
+        entry: pipenv run gitlint
         args:
           - "--staged"
           - "--msg-filename"
-          - "--contrib"
