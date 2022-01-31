@@ -5,17 +5,11 @@ repos:
     - id: check-builtin-literals
       args: ['--no-allow-dict-kwargs']
     - id: debug-statements
-    # - id: double-quote-string-fixer
     - id: end-of-file-fixer
     - id: name-tests-test
     - id: sort-simple-yaml
     - id: trailing-whitespace
       exclude: ".*.md$"
-  # - repo: https://github.com/asottile/reorder_python_imports
-  #   rev: v1.6.1
-  #   hooks:
-  #   - id: reorder-python-imports
-  #     language_version: python3
   - repo: https://github.com/asottile/add-trailing-comma
     rev: v1.4.1
     hooks:
@@ -26,21 +20,21 @@ repos:
         name: black
         stages: [commit]
         language: system
-        entry: pipenv run black
+        entry: poetry run black
         types: [python]
 
       - id: detect-secrets
         name: Detect secrets
         description: Detects high entropy strings that are likely to be passwords.
         language: system
-        entry: pipenv run detect-secrets-hook
+        entry: poetry run detect-secrets-hook
         args: ['--baseline', '.secrets.baseline']
 
       - id: flake8
         name: flake8
         stages: [commit]
         language: system
-        entry: pipenv run flake8
+        entry: poetry run flake8
         types: [python]
         exclude: setup.py
 
@@ -48,30 +42,30 @@ repos:
         name: isort
         stages: [commit]
         language: system
-        entry: pipenv run isort
+        entry: poetry run isort
         types: [python]
 
       - id: mypy
         name: mypy
         stages: [commit]
         language: system
-        entry: pipenv run mypy
+        entry: poetry run mypy
         types: [python]
         pass_filenames: false
 
-      - id: pipfile-sort
-        name: pipfile-sort
+      - id: toml-sort
+        name: toml-sort
         stages: [commit]
         language: system
-        entry: pipenv run pipfile-sort
+        entry: poetry run toml-sort
         pass_filenames: False
-        files: Pipfile
+        files: pyproject.toml
 
       - id: pytest-cov
         name: pytest
         stages: [push]
         language: system
-        entry: pipenv run pytest --cov --cov-fail-under=100
+        entry: poetry run pytest --cov --cov-fail-under=100
         types: [python]
         pass_filenames: false
 
@@ -79,7 +73,7 @@ repos:
         name: gitlint
         stages: [commit-msg]
         language: system
-        entry: pipenv run gitlint
+        entry: poetry run gitlint
         args:
           - "--staged"
           - "--msg-filename"

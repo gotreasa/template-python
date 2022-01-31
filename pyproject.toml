@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "template-python"
+version = "0.1.0"
+description = ""
+authors = ["Gearoid O'Treasaigh <gearoid.otreasaigh@ibm.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+black = "^22.1.0"
+detect-secrets = "^1.1.0"
+flake8 = "^4.0.1"
+gitlint = "^0.17.0"
+isort = "^5.10.1"
+mypy = "^0.931"
+pre-commit = "^2.17.0"
+pytest = "^6.2.5"
+pytest-bdd = "^5.0.0"
+pytest-cov = "^3.0.0"
+pytest-describe-it = "^0.1.0"
+0html = "^0.0.0"
+pytest-mock = "^3.7.0"
+pytest-pspec = "^0.0.4"
+pytest-watch = "^4.2.0"
+toml-sort = "^0.19.0"
+taskipy = "^1.9.0"
+
+[tool.taskipy.tasks]
+coverage = "pytest --cov-report term --cov='modules' --verbose --verbosity=9 --cache-clear --rootdir='.'"
+coverageHtml = "pytest --cov-report html --cov='modules'"
+detect-secrets-update = "detect-secrets scan --baseline .secrets.baseline"
+detect-secrets-audit = "detect-secrets audit .secrets.baseline"
+init = "pre-commit install --install-hooks -t commit-msg -t pre-push -t pre-commit"
+test = "pytest"
+watch = "ptw test/ -- --cov-report term --cov='modules'"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
