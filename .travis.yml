@@ -1,0 +1,36 @@
+language: python
+services:
+  - docker
+addons:
+  sonarcloud:
+    organization: "gotreasa" # the key of the org you chose at step #3
+    token:
+      secure: "SQ+6YwIY46o5vkHLiJc4ifotZKeb3rPibE3szDjUA51OiFKFeP4naHvzwC1sSXq/0poDMfBTfafjYx5TRN9UZ4+RI8riFsV5XnQ8goBDeViLZcbCpAd4B2QshMMEywZiaTRE54P9hYwQY1cG6j0PvZx9IT2MBNPJrAKZUAoy7bHmqH2T4+GkltPQBAp8cfqsEpatF1NwFHxZRv4AzH7NTxiEU5t4kYFCDILI3MV+qaHd7qmaucPlX3n42+cUD3IispUsJ8xseXAjWvP8IiICTt8jkJvMOIeEZUzq97iQoBGxt+vI37DYuRKAiXDvZjtsNkyAzWvuRovT5GDMbZSVX6wHIcX8YtDtknd+VD6zuU2cGgrXZRW3ws/34mVRAgUd1xqSi0lbV1XIvhBkBnF99xMH+qeTQc0xrz3AIe04+yig6q519ItNFjbWAjq9+QdPdpSG35At/H909Q+PefivfRA1Mq38u5DIcVp02Y3guS59CiRSYoQ3KPtIkbiZL1NIAFjBGtorXAb3522HvuED6C8+7/3X++L8kvYfQmrvXXYSJh1KIMC5hPj5BLdS0Zisxl4HKCoomi/ZiZxtYnIbdYcB64nJlgDZUl3NLIn1/bl9A6ca7Ifw/9vrakaYryo9WI1QGwzyZN/HjhbZk1bjLL3sGpuSzTMYlaty9oVOu/0="
+stages:
+- name: Quality checks
+- name: Test
+jobs:
+  include:
+  - stage: Quality Checks
+    env: step=Snyk vulnerability check
+    name: Snyk vulnerability check
+    script:
+      poetry run task test:security
+  - env: step=Detect secrets in files
+    name: Detect secrets in files
+    script:
+      - detect-secrets scan
+  - env: step=Run commit lint
+    name: Run commit lint
+    script:
+      - commitlint-travis
+  - stage: Test
+    env: step=Run tests and Sonar Scanner
+    name: Run tests and Sonar Scanner
+    script:
+      - poetry run task test
+      - sonar-scanner
+env:
+  global:
+    # SYNK_TOKEN
+    secure: "d0GSobqonL+hV1sH8qEfwN8UyVc888nF9eHcoeHuwL8pD934V5dc5bWilJBBwcnQ3JOvDSPiyermAQHvlpwWB1DqjVSA0gDuID22RpvMYx+oj2MuGgEnVflRrHhaVG0MmrNRooa7MzHPmw7lWN7ewrEUnS2Zorhe3h2yACyuye/iz4uTwqzxP+HKNeN28hyBpH1gCNFn9+nhxdpr83idCPF7/aR0rIfDo2f9majM2vQUWm1BBxzUDeswaxOcio0GImoox8lebiTWGnGdOVyiBsIUqcRmygA3biLfJtQKW9rf6zPRm1dhx1LfXt+zL7LbWIH5sjXVAN2ai+qSwG2JUNrqCAQABtfeaJfPVKQRryq3CGAHqlrcVQP6Ob6o49z5WfrikHYI0mhQtCK5jRfN4a8BnO7hrmsSNyFV4ca6Huosr73J+7EAOGZqdDo875c4lTpPMjxu30WkCHtt34YY6jol6Y9ZIaZ1SA7fyYXvbc6SmJ4HXHfZTbWJy9Y6xjwwOwd//YVZ7kw6CtcRDyJgN1kBvoyPuah37tsGgPejK4YLX+2vq8bRdKIWh4QfQyxwoWpJ3Kz1T7JSs7AluTxiSNCFj5k/jNFVCrvEVAjKc72UvPzkp4bYk4WJlwNLyd+BNu45nK4f6B2lF8TWek8k1Gsblr/61lTynfHDe7wg8Pw="
