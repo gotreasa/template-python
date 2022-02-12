@@ -31,7 +31,7 @@ jobs:
     name: Run tests and Sonar Scanner
     script:
       - poetry run task test
-      - sonar-scanner
+      - sonar-scanner -Dproject.settings=sonar-project.propoerties
 env:
   global:
     # SYNK_TOKEN
