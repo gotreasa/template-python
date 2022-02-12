@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.3.0
+    rev: v4.1.0
     hooks:
     - id: check-builtin-literals
       args: ['--no-allow-dict-kwargs']
@@ -11,7 +11,7 @@ repos:
     - id: trailing-whitespace
       exclude: ".*.md$"
   - repo: https://github.com/asottile/add-trailing-comma
-    rev: v1.4.1
+    rev: v2.2.1
     hooks:
     - id: add-trailing-comma
   - repo: local
@@ -38,6 +38,15 @@ repos:
         types: [python]
         exclude: setup.py
 
+      - id: gitlint
+        name: gitlint
+        stages: [commit-msg]
+        language: system
+        entry: poetry run gitlint
+        args:
+          - "--staged"
+          - "--msg-filename"
+
       - id: isort
         name: isort
         stages: [commit]
@@ -53,6 +62,20 @@ repos:
         types: [python]
         pass_filenames: false
 
+      - id: pytest-cov
+        name: pytest
+        stages: [push]
+        language: system
+        entry: poetry run task test
+        types: [python]
+        pass_filenames: false
+
+      - id: snyk
+        name: snyk
+        stages: [push]
+        language: system
+        entry: . .env && poetry run test:security
+
       - id: toml-sort
         name: toml-sort
         stages: [commit]
@@ -60,20 +83,3 @@ repos:
         entry: poetry run toml-sort
         pass_filenames: False
         files: pyproject.toml
-
-      - id: pytest-cov
-        name: pytest
-        stages: [push]
-        language: system
-        entry: poetry run pytest --cov --cov-fail-under=100
-        types: [python]
-        pass_filenames: false
-
-      - id: gitlint
-        name: gitlint
-        stages: [commit-msg]
-        language: system
-        entry: poetry run gitlint
-        args:
-          - "--staged"
-          - "--msg-filename"
