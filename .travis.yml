@@ -1,4 +1,6 @@
 language: python
+python:
+  - "3.9"
 services:
   - docker
 addons:
@@ -6,7 +8,7 @@ addons:
     organization: "gotreasa" # the key of the org you chose at step #3
     token:
       secure: "SQ+6YwIY46o5vkHLiJc4ifotZKeb3rPibE3szDjUA51OiFKFeP4naHvzwC1sSXq/0poDMfBTfafjYx5TRN9UZ4+RI8riFsV5XnQ8goBDeViLZcbCpAd4B2QshMMEywZiaTRE54P9hYwQY1cG6j0PvZx9IT2MBNPJrAKZUAoy7bHmqH2T4+GkltPQBAp8cfqsEpatF1NwFHxZRv4AzH7NTxiEU5t4kYFCDILI3MV+qaHd7qmaucPlX3n42+cUD3IispUsJ8xseXAjWvP8IiICTt8jkJvMOIeEZUzq97iQoBGxt+vI37DYuRKAiXDvZjtsNkyAzWvuRovT5GDMbZSVX6wHIcX8YtDtknd+VD6zuU2cGgrXZRW3ws/34mVRAgUd1xqSi0lbV1XIvhBkBnF99xMH+qeTQc0xrz3AIe04+yig6q519ItNFjbWAjq9+QdPdpSG35At/H909Q+PefivfRA1Mq38u5DIcVp02Y3guS59CiRSYoQ3KPtIkbiZL1NIAFjBGtorXAb3522HvuED6C8+7/3X++L8kvYfQmrvXXYSJh1KIMC5hPj5BLdS0Zisxl4HKCoomi/ZiZxtYnIbdYcB64nJlgDZUl3NLIn1/bl9A6ca7Ifw/9vrakaYryo9WI1QGwzyZN/HjhbZk1bjLL3sGpuSzTMYlaty9oVOu/0="
-before_install:
+install:
 - pip install poetry
 - poetry install
 stages:
