@@ -74,7 +74,7 @@ repos:
         name: snyk
         stages: [push]
         language: system
-        entry: poetry run test:security:local
+        entry: poetry run task test:security:local
 
       - id: toml-sort
         name: toml-sort
