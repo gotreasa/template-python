@@ -70,12 +70,6 @@ repos:
         types: [python]
         pass_filenames: false
 
-      - id: snyk
-        name: snyk
-        stages: [push]
-        language: system
-        entry: poetry run task test:security:local
-
       - id: toml-sort
         name: toml-sort
         stages: [commit]
