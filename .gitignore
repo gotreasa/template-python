@@ -325,3 +325,9 @@ cython_debug/
 
 # Temporary files used for Portman
 tmp/
+
+# Ignore files from thr Trunk extension
+.trunk
+
+# Ignore files from thr Markdown Lint extension
+.markdownlint.yaml
