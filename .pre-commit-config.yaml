@@ -74,7 +74,7 @@ repos:
         name: snyk
         stages: [push]
         language: system
-        entry: . .env && poetry run test:security
+        entry: source .env && poetry run test:security
 
       - id: toml-sort
         name: toml-sort
