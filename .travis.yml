@@ -6,8 +6,6 @@ services:
 addons:
   sonarcloud:
     organization: "gotreasa" # the key of the org you chose at step #3
-    token:
-      secure: "2kiguAFx918XuyWsVhc5/9pMd5ftt5+qBI3xeZ4UXx7AoSuXZVM97AroCXraCNTU0CQRxS2ErjQN45vEAVjJX67AZoJCVh5eM5k3NgVJhaiWqSthfE9uawNpg+adiA7R6hDFt8FJXnhT5PudXEEFPmriNhofEYqi5NFoJSBl+lkFNNFt6i7tYCqqGIX4uk7NJ5qy4LXp4VfWsI74hbc/ltnORLwsLDz5uhiprveOnfhSqCZRflWmk/Ft1lnVkySEv0QGAjApNLnzPlA2unLdp5xOegslzhi8Fpe4EPW3zbQ35Y5++PHnccKwrtzBWX6JQmL4ddbwFoQjHBEwSY6H3R0ONFawkdDENFekNWdr2z2c/PtOoDPs0CCO0T3ndqgCEJaSTlgcreSMbb4W+QYfxu39pp9VQSDyU0vTfInywZGCk3oXIbbQSkQ94d+eDtYYp4hDzG9MrWaObifedo/zHU0FLuoCpn0SMLtomGKRgxhPiRs5UnGraQ8ccg8zfwTY5QnihNRRIMpHXK1huAoBLbKfTQRpq9XPNRupgdJAfqyfMvxPqW6vwAW/IjEihJVUH6IYIo40mLUniTWn88KYRHXXj8Xak66tyxq7sIEvBHZOK0Zv4o0JTdm+sgH/m3Yy3DBtruXq0vLcpCQxQmZCumAxWF7qRRdU59lHM/fAFkY="
 before_install:
 - pip install poetry==1.1.13
 install:
@@ -32,7 +30,3 @@ jobs:
     script:
       - poetry run task test
       - sonar-scanner -Dproject.settings=sonar-project.propoerties
-env:
-  global:
-    # SYNK_TOKEN
-    secure: "d0GSobqonL+hV1sH8qEfwN8UyVc888nF9eHcoeHuwL8pD934V5dc5bWilJBBwcnQ3JOvDSPiyermAQHvlpwWB1DqjVSA0gDuID22RpvMYx+oj2MuGgEnVflRrHhaVG0MmrNRooa7MzHPmw7lWN7ewrEUnS2Zorhe3h2yACyuye/iz4uTwqzxP+HKNeN28hyBpH1gCNFn9+nhxdpr83idCPF7/aR0rIfDo2f9majM2vQUWm1BBxzUDeswaxOcio0GImoox8lebiTWGnGdOVyiBsIUqcRmygA3biLfJtQKW9rf6zPRm1dhx1LfXt+zL7LbWIH5sjXVAN2ai+qSwG2JUNrqCAQABtfeaJfPVKQRryq3CGAHqlrcVQP6Ob6o49z5WfrikHYI0mhQtCK5jRfN4a8BnO7hrmsSNyFV4ca6Huosr73J+7EAOGZqdDo875c4lTpPMjxu30WkCHtt34YY6jol6Y9ZIaZ1SA7fyYXvbc6SmJ4HXHfZTbWJy9Y6xjwwOwd//YVZ7kw6CtcRDyJgN1kBvoyPuah37tsGgPejK4YLX+2vq8bRdKIWh4QfQyxwoWpJ3Kz1T7JSs7AluTxiSNCFj5k/jNFVCrvEVAjKc72UvPzkp4bYk4WJlwNLyd+BNu45nK4f6B2lF8TWek8k1Gsblr/61lTynfHDe7wg8Pw="
